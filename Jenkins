@@ -2,8 +2,8 @@ pipeline {
     agent any
 
     tools {
-        jdk 'jdk 9'
-        maven 'maven 3'
+        jdk 'JDK 9'
+        maven 'Maven 3'
     }
 
     stages {
@@ -19,20 +19,6 @@ pipeline {
                 withSonarQubeEnv('SonarQube') {
                     sh 'mvn clean verify sonar:sonar -Dsonar.login=c21ddee0561e98f82c68a8d1c1d9300f2e3bf73e'
                 }
-            }
-        }
-
-        stage('Build pom.xml from maven') {
-            steps {
-                withMaven(maven : 'maven 3') {
-                    sh 'ls server'
-                    sh "mvn war:exploded -f 'server/pom.xml'"
-                }
-            }
-        }
-        stage('Deploy to k8s') {
-            steps {
-                sh 'mvn:k8s:build'
             }
         }
     }
