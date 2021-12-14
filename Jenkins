@@ -4,11 +4,10 @@ pipeline {
     tools {
         jdk 'jdk 9'
         maven 'maven 3'
-        gradle 'Gradle'
     }
 
     stages {
-        stage('Get Code') {
+        stage('Pulling Repository') {
             steps {
                 git 'https://github.com/revirven/MileStone.git'
                 sh 'ls'
@@ -18,7 +17,7 @@ pipeline {
         stage('SonnarQube Scanner') {
             steps {
                 withSonarQubeEnv('SonarQube') {
-                    sh 'mvn clean verify sonar:sonar -Dsonar.login=5d3f8f97658f4c6e9df436f2babad15fe6dda55e'
+                    sh 'mvn clean verify sonar:sonar -Dsonar.login=c21ddee0561e98f82c68a8d1c1d9300f2e3bf73e'
                 }
             }
         }
