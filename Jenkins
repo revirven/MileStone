@@ -10,7 +10,7 @@ pipeline {
     stages {
         stage('Get Code') {
             steps {
-                git 'https://github.com/ManhKhoa1507/MileStone.git'
+                git 'https://github.com/revirven/MileStone.git'
                 sh 'ls'
             }
         }
